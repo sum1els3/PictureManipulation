@@ -24,11 +24,12 @@ namespace PictureManipulation
 
         }
 
-        private void GetPictures()
-        {
-
-        }
-
+        /// <summary>
+        /// Gets the item from the list that matches the name from the combobox
+        /// then displays the name in a textbox and the image into a picturebox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Picture picture = Pictures.Find(item => item.FileName.Equals(comboBox1.SelectedItem.ToString()));
@@ -36,6 +37,11 @@ namespace PictureManipulation
             pictureBox1.Image = picture.Pic;
         }
 
+        /// <summary>
+        /// Retrieves datas from database to a list then adds it into combobox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox1_Click(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();

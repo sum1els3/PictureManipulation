@@ -19,6 +19,11 @@ namespace PictureManipulation
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Upload_Load(object sender, EventArgs e)
         {
             DatabaseLocation.DatabaseIP = "192.168.43.39";
@@ -28,6 +33,11 @@ namespace PictureManipulation
             DatabaseLocation.DatabasePassword = "user0";
         }
 
+        /// <summary>
+        /// Executes when the button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             string location = GetPictureLocation();
@@ -38,6 +48,11 @@ namespace PictureManipulation
             }
         }
 
+        /// <summary>
+        /// Get the image's location from a opendialogbox,
+        /// inserts it in the database then returns the new location
+        /// </summary>
+        /// <returns></returns>
         private string GetPictureLocation()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -52,6 +67,12 @@ namespace PictureManipulation
             }
         }
 
+        /// <summary>
+        /// Copies the image to the server's location
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         private string NewLocation(string location, string fileName)
         {
             string newLocation = string.Format("\\\\{0}{1}{2}", DatabaseLocation.DatabaseIP, NetworkLocation, fileName);
@@ -68,6 +89,11 @@ namespace PictureManipulation
             showAll.Show();
         }
 
+        /// <summary>
+        /// Creates a new instance then inserts it in the database
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="name"></param>
         private void InsertIntoDatabase(string location, string name)
         {
             new Picture(name, location).InsertIntoDatabase();

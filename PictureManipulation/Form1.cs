@@ -16,5 +16,27 @@ namespace PictureManipulation
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string location = GetPictureLocation();
+            if (!string.IsNullOrEmpty(location))
+            {
+                pictureBox1.Image = new Bitmap(location);
+            }
+        }
+
+        private string GetPictureLocation()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                return openFileDialog.FileName;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
     }
 }

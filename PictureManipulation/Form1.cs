@@ -31,12 +31,22 @@ namespace PictureManipulation
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                return openFileDialog.FileName;
+                return NewLocation(openFileDialog.FileName, openFileDialog.SafeFileName);
             }
             else
             {
                 return string.Empty;
             }
+        }
+
+        private string NewLocation(string location, string fileName)
+        {
+            string newLocation = string.Format("{0}\\{1}", Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), fileName);
+            if (System.IO.File.Exists(location) == true)
+            {
+                System.IO.File.Copy(location, newLocation);
+            }
+            return newLocation;
         }
     }
 }

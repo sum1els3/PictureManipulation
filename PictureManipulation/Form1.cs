@@ -12,6 +12,8 @@ namespace PictureManipulation
 {
     public partial class Form1 : Form
     {
+        private string NetworkLocation = "\\\\192.168.43.39\\Share";
+
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace PictureManipulation
             if (!string.IsNullOrEmpty(location))
             {
                 pictureBox1.Image = new Bitmap(location);
+                MessageBox.Show("Complete!");
             }
         }
 
@@ -41,7 +44,7 @@ namespace PictureManipulation
 
         private string NewLocation(string location, string fileName)
         {
-            string newLocation = string.Format("{0}\\{1}", Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), fileName);
+            string newLocation = string.Format("{0}\\{1}", NetworkLocation, fileName);
             if (System.IO.File.Exists(location) == true)
             {
                 System.IO.File.Copy(location, newLocation);
